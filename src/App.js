@@ -1,19 +1,24 @@
+import { createContext } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import Main from './components/main/Main';
+import menu from './hoc/menu';
 import HomeWrapper from './pages/HomeWrapper';
+export const showContext = createContext()
 
 
-function App() {
+function App({ show, toggleShow }) {
   return (
     <div className="App">
-      <Routes>
-        <Route path='/' element={<HomeWrapper />}>
-          <Route index element={<Main />} />
-        </Route>
-      </Routes>
+      <showContext.Provider value={{ show, toggleShow }} >
+        <Routes>
+          <Route path='/' element={<HomeWrapper />}>
+            <Route index element={<Main />} />
+          </Route>
+        </Routes>
+      </showContext.Provider>
     </div>
   );
 }
 
-export default App;
+export default menu(App);

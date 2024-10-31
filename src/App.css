@@ -1,7 +1,16 @@
+@font-face {
+  font-family: "roboto";
+  src: url("./fonts/Roboto-Thin.ttf");
+}
+@font-face {
+  font-family: "rubik";
+  src: url("./fonts/RubikWetPaint-Regular.ttf");
+}
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "roboto";
 }
 
 a {
@@ -20,4 +29,145 @@ img {
 .container {
   max-width: 90vw;
   margin: 0 auto;
+}
+
+.navbar {
+  background-color: rgb(242, 0, 204);
+}
+.navbar .container .navbar-content {
+  padding: 30px 0 30px 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.navbar .container .navbar-content .navbar-content-left {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+.navbar .container .navbar-content .navbar-content-left .navbar-content-logo {
+  max-width: 100px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+.navbar .container .navbar-content .navbar-content-left .navbar-content-logo img {
+  max-width: 50px;
+}
+.navbar .container .navbar-content .navbar-content-left .navbar-content-logo .logo-txt {
+  color: #fff;
+  font-family: "rubik";
+}
+.navbar .container .navbar-content .navbar-content-left .navbar-content-burger {
+  border: 1px solid rgb(194, 194, 194);
+  width: 50px;
+  height: 50px;
+  border-radius: 10px;
+  display: grid;
+  place-content: center;
+  cursor: pointer;
+  transition: 0.4s;
+}
+.navbar .container .navbar-content .navbar-content-left .navbar-content-burger .burger-line {
+  position: relative;
+  display: block;
+  width: 30px;
+  height: 3px;
+  background-color: #fff;
+}
+.navbar .container .navbar-content .navbar-content-left .navbar-content-burger .burger-line::after {
+  content: "";
+  display: block;
+  background-color: #fff;
+  width: 30px;
+  height: 3px;
+  position: absolute;
+  top: -10px;
+}
+.navbar .container .navbar-content .navbar-content-left .navbar-content-burger .burger-line::before {
+  content: "";
+  display: block;
+  background-color: #fff;
+  width: 30px;
+  height: 3px;
+  position: absolute;
+  bottom: -10px;
+}
+.navbar .container .navbar-content .navbar-content-left .navbar-content-burger:hover {
+  border: 1px solid #fff;
+}
+.navbar .container .navbar-content .navbar-content-search {
+  width: 60%;
+}
+.navbar .container .navbar-content .navbar-content-search form {
+  position: relative;
+}
+.navbar .container .navbar-content .navbar-content-search form input {
+  width: 100%;
+  height: 50px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  font-size: 18px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+.navbar .container .navbar-content .navbar-content-search form .search-icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 18px;
+  cursor: pointer;
+  color: gray;
+  transition: 0.3s;
+}
+.navbar .container .navbar-content .navbar-content-search form .search-icon:hover {
+  color: #000;
+}
+.navbar .container .navbar-content .navbar-content-icons {
+  display: flex;
+  gap: 15px;
+}
+.navbar .container .navbar-content .navbar-content-icons .navbar-content-user,
+.navbar .container .navbar-content .navbar-content-icons .navbar-content-basket {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 18px;
+  color: #fff;
+  cursor: pointer;
+}
+.navbar .container .navbar-content .navbar-content-icons .navbar-content-user .icon-txt,
+.navbar .container .navbar-content .navbar-content-icons .navbar-content-basket .icon-txt {
+  color: rgb(204, 203, 203);
+  transition: 0.3s;
+}
+.navbar .container .navbar-content .navbar-content-icons .navbar-content-user .icon-txt:hover,
+.navbar .container .navbar-content .navbar-content-icons .navbar-content-basket .icon-txt:hover {
+  color: #fff;
+}
+
+.menu {
+  width: 100%;
+  height: 85vh;
+  background-color: rgba(191, 191, 191, 0.788);
+  position: absolute;
+  left: 0;
+}
+.menu .menu-link {
+  width: 15%;
+  height: 100%;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  align-items: center;
+  transition: 0.5s;
+  transform: translateX(-100%);
+}
+.menu .show {
+  transform: translateX(0);
 }/*# sourceMappingURL=App.css.map */

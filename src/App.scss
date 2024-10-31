@@ -1,8 +1,18 @@
+@font-face {
+    font-family: 'roboto';
+    src: url('./fonts/Roboto-Thin.ttf');
+}
+
+@font-face {
+    font-family: 'rubik';
+    src: url('./fonts/RubikWetPaint-Regular.ttf');
+}
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-
+    font-family: 'roboto';
 }
 
 a {
@@ -22,3 +32,6 @@ img {
     max-width: 90vw;
     margin: 0 auto;
 }
+
+@import './components/navbar/navbar';
+@import './components/munu/_menu';
