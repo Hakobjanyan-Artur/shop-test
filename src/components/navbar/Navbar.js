@@ -1,12 +1,21 @@
 import logo from '../../img/shopify.png'
 import { FaUser, FaSearch } from "react-icons/fa";
 import { SlBasket } from "react-icons/sl";
-import { useContext } from 'react';
+import { useContext, useRef } from 'react';
 import { showContext } from '../../App';
 
 
 export default function Navbar() {
-    const { show, toggleShow } = useContext(showContext)
+    const { toggleShow } = useContext(showContext)
+    const burger1 = useRef(null)
+    const burger2 = useRef(null)
+    const burger3 = useRef(null)
+
+    const burgerClick = () => {
+        burger1.current.classList.toggle('rotate-1')
+        burger2.current.classList.toggle('burger-op')
+        burger3.current.classList.toggle('rotate-3')
+    }
 
     return (
         <div className="navbar">
@@ -18,9 +27,11 @@ export default function Navbar() {
                             <span className='logo-txt'>Test Shop</span>
                         </div>
                         <div
-                            onClick={toggleShow}
+                            onClick={() => { toggleShow(); burgerClick() }}
                             className='navbar-content-burger'>
-                            <span className='burger-line'></span>
+                            <span ref={burger1} className='burger-line-1'></span>
+                            <span ref={burger2} className='burger-line-2'></span>
+                            <span ref={burger3} className='burger-line-3'></span>
                         </div>
                     </div>
                     <div className="navbar-content-search">

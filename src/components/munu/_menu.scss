@@ -4,6 +4,7 @@
     background-color: rgba(191, 191, 191, 0.788);
     position: absolute;
     left: 0;
+    display: none;
 
     .menu-link {
         width: 15%;
@@ -13,11 +14,15 @@
         flex-direction: column;
         padding: 10px;
         align-items: center;
-        transition: .5s;
+        transition: .2s;
         transform: translateX(-100%);
     }
 
     .show {
         transform: translateX(0);
     }
+}
+
+.menu-show {
+    display: block;
 }

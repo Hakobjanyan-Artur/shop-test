@@ -40,10 +40,21 @@ img {
   justify-content: space-around;
   align-items: center;
 }
+@media (max-width: 940px) {
+  .navbar .container .navbar-content {
+    justify-content: center;
+    gap: 10px;
+  }
+}
 .navbar .container .navbar-content .navbar-content-left {
   display: flex;
   gap: 30px;
   align-items: center;
+}
+@media (max-width: 940px) {
+  .navbar .container .navbar-content .navbar-content-left {
+    display: none;
+  }
 }
 .navbar .container .navbar-content .navbar-content-left .navbar-content-logo {
   max-width: 100px;
@@ -70,36 +81,48 @@ img {
   cursor: pointer;
   transition: 0.4s;
 }
-.navbar .container .navbar-content .navbar-content-left .navbar-content-burger .burger-line {
-  position: relative;
+.navbar .container .navbar-content .navbar-content-left .navbar-content-burger .burger-line-1 {
   display: block;
   width: 30px;
   height: 3px;
   background-color: #fff;
+  transform: translateY(-5px);
+  transition: 0.3s;
 }
-.navbar .container .navbar-content .navbar-content-left .navbar-content-burger .burger-line::after {
-  content: "";
-  display: block;
-  background-color: #fff;
-  width: 30px;
-  height: 3px;
-  position: absolute;
-  top: -10px;
+.navbar .container .navbar-content .navbar-content-left .navbar-content-burger .rotate-1 {
+  transform: translateY(2.5px) rotate(45deg);
 }
-.navbar .container .navbar-content .navbar-content-left .navbar-content-burger .burger-line::before {
-  content: "";
+.navbar .container .navbar-content .navbar-content-left .navbar-content-burger .burger-line-2 {
   display: block;
-  background-color: #fff;
   width: 30px;
   height: 3px;
-  position: absolute;
-  bottom: -10px;
+  background-color: #fff;
+  transition: 0.3s;
+}
+.navbar .container .navbar-content .navbar-content-left .navbar-content-burger .burger-op {
+  opacity: 0;
+}
+.navbar .container .navbar-content .navbar-content-left .navbar-content-burger .burger-line-3 {
+  display: block;
+  width: 30px;
+  height: 3px;
+  background-color: #fff;
+  transform: translateY(5px);
+  transition: 0.3s;
+}
+.navbar .container .navbar-content .navbar-content-left .navbar-content-burger .rotate-3 {
+  transform: translateY(-2.5px) rotate(-45deg);
 }
 .navbar .container .navbar-content .navbar-content-left .navbar-content-burger:hover {
   border: 1px solid #fff;
 }
 .navbar .container .navbar-content .navbar-content-search {
   width: 60%;
+}
+@media (max-width: 940px) {
+  .navbar .container .navbar-content .navbar-content-search {
+    width: 90%;
+  }
 }
 .navbar .container .navbar-content .navbar-content-search form {
   position: relative;
@@ -149,6 +172,11 @@ img {
 .navbar .container .navbar-content .navbar-content-icons .navbar-content-basket .icon-txt:hover {
   color: #fff;
 }
+@media (max-width: 940px) {
+  .navbar .container .navbar-content .navbar-content-icons .navbar-content-user {
+    display: none;
+  }
+}
 
 .menu {
   width: 100%;
@@ -156,6 +184,7 @@ img {
   background-color: rgba(191, 191, 191, 0.788);
   position: absolute;
   left: 0;
+  display: none;
 }
 .menu .menu-link {
   width: 15%;
@@ -165,9 +194,13 @@ img {
   flex-direction: column;
   padding: 10px;
   align-items: center;
-  transition: 0.5s;
+  transition: 0.2s;
   transform: translateX(-100%);
 }
 .menu .show {
   transform: translateX(0);
+}
+
+.menu-show {
+  display: block;
 }/*# sourceMappingURL=App.css.map */

@@ -8,10 +8,19 @@
             justify-content: space-around;
             align-items: center;
 
+            @media(max-width: 940px) {
+                justify-content: center;
+                gap: 10px;
+            }
+
             .navbar-content-left {
                 display: flex;
                 gap: 30px;
                 align-items: center;
+
+                @media(max-width: 940px) {
+                    display: none;
+                }
 
                 .navbar-content-logo {
                     max-width: 100px;
@@ -42,34 +51,43 @@
                     transition: .4s;
 
 
-                    .burger-line {
-                        position: relative;
+                    .burger-line-1 {
                         display: block;
                         width: 30px;
                         height: 3px;
                         background-color: #fff;
+                        transform: translateY(-5px);
+                        transition: .3s;
                     }
 
-                    .burger-line::after {
-                        content: "";
+                    .rotate-1 {
+                        transform: translateY(2.5px) rotate(45deg);
+                    }
+
+                    .burger-line-2 {
                         display: block;
-                        background-color: #fff;
                         width: 30px;
                         height: 3px;
-                        position: absolute;
-                        top: -10px;
+                        background-color: #fff;
+                        transition: .3s;
                     }
 
-                    .burger-line::before {
-                        content: "";
+                    .burger-op {
+                        opacity: 0;
+                    }
+
+                    .burger-line-3 {
                         display: block;
-                        background-color: #fff;
                         width: 30px;
                         height: 3px;
-                        position: absolute;
-                        bottom: -10px;
+                        background-color: #fff;
+                        transform: translateY(5px);
+                        transition: .3s;
                     }
 
+                    .rotate-3 {
+                        transform: translateY(-2.5px) rotate(-45deg);
+                    }
                 }
 
                 .navbar-content-burger:hover {
@@ -79,6 +97,10 @@
 
             .navbar-content-search {
                 width: 60%;
+
+                @media(max-width: 940px) {
+                    width: 90%;
+                }
 
                 form {
                     position: relative;
@@ -131,6 +153,12 @@
 
                     .icon-txt:hover {
                         color: #fff;
+                    }
+                }
+
+                .navbar-content-user {
+                    @media(max-width: 940px) {
+                        display: none;
                     }
                 }
             }

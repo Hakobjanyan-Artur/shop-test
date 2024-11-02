@@ -3,19 +3,32 @@ import { showContext } from "../../App"
 
 
 export default function Menu() {
-    const { show } = useContext(showContext)
+    const { show, toggleShow } = useContext(showContext)
     const ulRef = useRef(null)
+    const menuRef = useRef(null)
+
     useEffect(() => {
-        setTimeout(() => {
-            show === 'show' ? ulRef.current.classList.add('show') : ulRef.current.classList.remove('show')
-        }, 500)
+        if (show === 'show') {
+            setTimeout(() => {
+                menuRef.current.classList.add('menu-show')
+            }, 100)
+            setTimeout(() => {
+                ulRef.current.classList.add('show')
+            }, 200)
+        } else {
+            setTimeout(() => {
+                ulRef.current.classList.remove('show')
+            }, 100)
+            setTimeout(() => {
+                menuRef.current.classList.remove('menu-show')
+            }, 200)
+        }
     }, [show])
 
     return (
         <div
-            style={{
-                display: show === 'hide' ? 'none' : ''
-            }}
+            onClick={toggleShow}
+            ref={menuRef}
             className="menu">
             <div
                 ref={ulRef}
