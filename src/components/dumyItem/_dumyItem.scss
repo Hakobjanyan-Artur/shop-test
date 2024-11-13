@@ -1,0 +1,114 @@
+.dumy-item {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    cursor: pointer;
+
+    .dumy-item-preview {
+        border-radius: 10px;
+        max-height: 250px;
+        overflow: hidden;
+        box-shadow: 0 0 1px #000;
+        position: relative;
+
+        .dumy-item-likes {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 18px;
+            transition: .2s;
+        }
+
+        .dumy-item-likes:hover {
+            color: rgb(147, 12, 252);
+        }
+
+        .dumy-item-precent {
+            background-color: red;
+            width: 60px;
+            height: 20px;
+            border-radius: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            position: absolute;
+            bottom: 20px;
+            left: 10px;
+        }
+    }
+
+    .dumy-item-info {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+
+        .dumy-item-price {
+            color: red;
+            font-size: 18px;
+            font-weight: 800;
+
+            .dumy-item-price-disount {
+                font-size: 15px;
+                font-weight: 300;
+                color: gray;
+                text-decoration: line-through;
+            }
+        }
+
+        .dumy-item-category {
+            font-size: 14px;
+            font-weight: 600;
+
+            .dumy-item-category-title {
+                color: gray;
+                font-weight: 300;
+            }
+        }
+
+        .dumy-item-rating {
+            display: flex;
+            align-items: center;
+            gap: 3px;
+            font-size: 15px;
+
+            .dumy-item-ratin-star {
+                color: rgb(249, 153, 75);
+            }
+
+            .dumy-item-rating-rating {
+                font-weight: 600;
+            }
+
+            .dumy-item-rating-commeny-length {
+                color: gray;
+            }
+        }
+    }
+
+    .dumy-item-button {
+        display: flex;
+        justify-content: center;
+
+        button {
+            width: 95%;
+            height: 30px;
+            background-color: rgb(147, 12, 252);
+            color: #fff;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: .3s;
+        }
+
+        button:hover {
+            background-color: rgb(167, 63, 247);
+        }
+    }
+}
