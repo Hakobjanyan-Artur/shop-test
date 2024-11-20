@@ -33,9 +33,11 @@ img {
 
 .navbar {
   background-color: rgb(147, 12, 252);
+  width: 100%;
+  z-index: 99;
 }
 .navbar .container .navbar-content {
-  padding: 30px 0 30px 0;
+  padding: 10px 0 10px 0;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -218,29 +220,58 @@ img {
 
 .menu {
   width: 100%;
-  height: 85vh;
+  height: 100vh;
   background-color: rgba(191, 191, 191, 0.788);
-  position: absolute;
+  position: fixed;
+  top: 100px;
   left: 0;
   display: none;
-  z-index: 99;
+  z-index: 95;
+}
+@media (max-width: 940px) {
+  .menu {
+    top: 70px;
+  }
 }
 .menu .menu-link {
   width: 15%;
-  height: 100%;
+  height: 90vh;
   background-color: #fff;
   display: flex;
   flex-direction: column;
-  padding: 10px;
+  padding: 10px 20px;
   align-items: center;
   transition: 0.2s;
   transform: translateX(-100%);
+  overflow-y: auto;
 }
 @media (max-width: 940px) {
   .menu .menu-link {
     width: 100%;
     align-items: baseline;
   }
+}
+.menu .menu-link ul {
+  padding: 10px 0 30px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+.menu .menu-link ul li {
+  border: 1px solid rgb(147, 12, 252);
+  width: 100%;
+  height: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.menu .menu-link ul li:hover {
+  background-color: rgb(147, 12, 252);
+  color: #fff;
 }
 .menu .show {
   transform: translateX(0);
@@ -251,7 +282,7 @@ img {
 }
 
 .main {
-  padding: 30px 0 30px 0;
+  padding: 30px 0 70px 0;
 }
 .main .container .main-content {
   display: grid;
@@ -278,6 +309,56 @@ img {
 @media (max-width: 500px) {
   .main .container .main-content {
     grid-template-columns: repeat(2, 1fr);
+  }
+}
+.main .container .refresh {
+  display: flex;
+  justify-content: center;
+}
+.main .container .refresh button {
+  width: 130px;
+  padding: 2px 5px 2px 5px;
+  height: 30px;
+  background-color: rgb(147, 12, 252);
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: 0.3s;
+}
+.main .container .refresh button:hover {
+  background-color: rgb(167, 63, 247);
+}
+.main .container .ref {
+  -webkit-animation: rot 2s infinite linear;
+  animation: rot 0.8s infinite linear;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@-webkit-keyframes rot {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(180deg);
+  }
+}
+@keyframes rot {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(180deg);
   }
 }
 
@@ -380,107 +461,43 @@ img {
   background-color: rgb(167, 63, 247);
 }
 
-.oneStore-item {
+.categori {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  cursor: pointer;
+  gap: 20px;
+  padding: 30px 0 50px 0;
 }
-.oneStore-item .oneStore-item-preview {
-  border-radius: 10px;
-  height: 200px;
-  overflow: hidden;
-  box-shadow: 0 0 1px #000;
-  position: relative;
+.categori h1 {
   display: flex;
   justify-content: center;
-  align-items: center;
-}
-.oneStore-item .oneStore-item-preview .oneStore-item-preview-img {
-  width: 80%;
-}
-.oneStore-item .oneStore-item-preview .oneStore-item-likes {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  font-size: 18px;
-  transition: 0.2s;
-}
-.oneStore-item .oneStore-item-preview .oneStore-item-likes:hover {
-  color: rgb(147, 12, 252);
-}
-.oneStore-item .oneStore-item-preview .oneStore-item-precent {
-  background-color: red;
-  width: 60px;
-  height: 20px;
-  border-radius: 5px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #fff;
-  position: absolute;
-  bottom: 20px;
-  left: 10px;
-}
-.oneStore-item .oneStore-item-info {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
-.oneStore-item .oneStore-item-info .oneStore-item-price {
-  color: red;
-  font-size: 18px;
-  font-weight: 800;
-}
-.oneStore-item .oneStore-item-info .oneStore-item-price .oneStore-item-price-disount {
-  font-size: 15px;
-  font-weight: 300;
-  color: gray;
-  text-decoration: line-through;
-}
-.oneStore-item .oneStore-item-info .oneStore-item-category {
-  font-size: 14px;
-  font-weight: 600;
-}
-.oneStore-item .oneStore-item-info .oneStore-item-category .oneStore-item-category-title {
-  color: gray;
-  font-weight: 300;
-}
-.oneStore-item .oneStore-item-info .oneStore-item-rating {
-  display: flex;
-  align-items: center;
-  gap: 3px;
-  font-size: 15px;
-}
-.oneStore-item .oneStore-item-info .oneStore-item-rating .oneStore-item-ratin-star {
-  color: rgb(249, 153, 75);
-}
-.oneStore-item .oneStore-item-info .oneStore-item-rating .oneStore-item-rating-rating {
-  font-weight: 600;
-}
-.oneStore-item .oneStore-item-info .oneStore-item-rating .oneStore-item-rating-commeny-length {
-  color: gray;
-}
-.oneStore-item .oneStore-item-button {
-  display: flex;
-  justify-content: center;
-}
-.oneStore-item .oneStore-item-button button {
-  width: 95%;
-  height: 30px;
+  padding: 10px 0 10px 0;
   background-color: rgb(147, 12, 252);
   color: #fff;
-  font-size: 16px;
-  font-weight: 600;
-  border-radius: 10px;
-  border: none;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  transition: 0.3s;
 }
-.oneStore-item .oneStore-item-button button:hover {
-  background-color: rgb(167, 63, 247);
+.categori .container .categori-content {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 20px;
+  padding: 30px 0 30px 0;
+}
+@media (max-width: 940px) {
+  .categori .container .categori-content {
+    grid-template-columns: repeat(5, 1fr);
+    padding-bottom: 50px;
+  }
+}
+@media (max-width: 800px) {
+  .categori .container .categori-content {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+@media (max-width: 650px) {
+  .categori .container .categori-content {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (max-width: 500px) {
+  .categori .container .categori-content {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }/*# sourceMappingURL=App.css.map */

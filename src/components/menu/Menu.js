@@ -1,11 +1,23 @@
-import { React, useContext, useEffect, useRef } from "react"
+import { React, useContext, useEffect, useRef, useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { useNavigate } from "react-router-dom"
 import { showContext } from "../../App"
+import { getCategori } from "../../store/slices/categories/categoriAPI"
+import { addCategori, selectCategories } from "../../store/slices/categories/categories"
+import { getCurrent } from "../../store/slices/categories/currentCategoriAPI"
 
 
 export default function Menu() {
     const { show, toggleShow } = useContext(showContext)
     const ulRef = useRef(null)
     const menuRef = useRef(null)
+    const dispatch = useDispatch()
+    const { categori } = useSelector(selectCategories)
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        dispatch(getCategori())
+    }, [])
 
     useEffect(() => {
         if (show === 'show') {
@@ -34,12 +46,9 @@ export default function Menu() {
                 ref={ulRef}
                 className="menu-link">
                 <ul>
-                    <li>1</li>
-                    <li>2</li>
-                    <li>3</li>
-                    <li>4</li>
-                    <li>5</li>
-                    <li>6</li>
+                    {categori?.map(el => (
+                        <li onClick={() => { dispatch(getCurrent(el.name)); navigate(`categori`); }} key={el.id}>{el.name}</li>
+                    ))}
                 </ul>
             </div>
         </div>

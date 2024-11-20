@@ -1,17 +1,14 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { v4 } from "uuid";
 
-export const getDumy = createAsyncThunk(
-    'dumy/getDumy',
-    async (limit) => {
+export const getCurrent = createAsyncThunk(
+    'currentCategori/getCurrent',
+    async (name) => {
 
-        let dumy = await axios.get('https://dummyjson.com/products', {
-            params: {
-                limit: limit,
-            }
-        })
+        let current = await axios.get(`https://dummyjson.com/products/category/${name}`)
 
-        let dumyPr = dumy.data.products.map(el => ({
+        let currentCat = current.data.products.map(el => ({
             id: el.id,
             brand: el.brand,
             category: el.category,
@@ -26,10 +23,9 @@ export const getDumy = createAsyncThunk(
             meta: el.meta,
             photoPreview: el.thumbnail,
             images: el.images,
-            shop: 'Dumy'
         }))
 
-        return dumyPr
+        return currentCat
 
     }
 )

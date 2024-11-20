@@ -1,12 +1,15 @@
 import logo from '../../img/shopify.png'
 import { FaUser, FaSearch } from "react-icons/fa";
 import { PiShoppingCartSimpleFill } from "react-icons/pi";
-import { useContext, useEffect, useRef } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import { showContext } from '../../App';
+import { useNavigate } from 'react-router-dom';
 
 
 export default function Navbar() {
     const { show, toggleShow } = useContext(showContext)
+    const [fixed, setFixed] = useState(false)
+    const navigate = useNavigate()
     const burger1 = useRef(null)
     const burger2 = useRef(null)
     const burger3 = useRef(null)
@@ -23,12 +26,33 @@ export default function Navbar() {
         }
     }, [show])
 
+    const scrollHandler = (e) => {
+        if (e.target.documentElement.scrollTop > 50) {
+            setFixed(true)
+        } else {
+            setFixed(false)
+        }
+    }
+
+    useEffect(() => {
+        document.addEventListener('scroll', scrollHandler)
+        return () => {
+            document.removeEventListener('scroll', scrollHandler)
+        }
+    }, [])
+
     return (
-        <div className="navbar">
+        <div
+            style={{
+                position: fixed ? 'fixed' : ''
+            }}
+            className="navbar">
             <div className="container">
                 <div className="navbar-content">
                     <div className="navbar-content-left">
-                        <div className="navbar-content-logo">
+                        <div
+                            onClick={() => navigate('/')}
+                            className="navbar-content-logo">
                             <img src={logo} alt="" />
                             <span className='logo-txt'>Test Shop</span>
                         </div>

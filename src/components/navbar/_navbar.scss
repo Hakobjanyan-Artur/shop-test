@@ -1,9 +1,11 @@
 .navbar {
     background-color: rgb(147, 12, 252);
+    width: 100%;
+    z-index: 99;
 
     .container {
         .navbar-content {
-            padding: 30px 0 30px 0;
+            padding: 10px 0 10px 0;
             display: flex;
             justify-content: space-around;
             align-items: center;

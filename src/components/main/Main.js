@@ -1,46 +1,30 @@
-import { useEffect, useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { selectDumy } from "../../store/slices/products/dumy"
-import { getDumy } from "../../store/slices/products/dumyAPI"
-import { selectOne } from "../../store/slices/products/oneStore"
-import { getOne } from "../../store/slices/products/oneStoreAPI"
-import DumyItem from "../dumyItem/DumyItem"
-import OneStoreItem from "../onStorItem/OnStoreItem"
+import { selectProducts } from "../../store/slices/products/products"
+import { getProducts } from "../../store/slices/products/productsAPI"
+import { Triangle } from 'react-loader-spinner'
+import { FiRefreshCw } from "react-icons/fi";
+const LazyItems = React.lazy(() => import('../productsItem/ProductsItem'))
 
 
 export default function Main() {
-    const { dumy } = useSelector(selectDumy)
-    const { oneStore } = useSelector(selectOne)
+    const { products } = useSelector(selectProducts)
     const dispatch = useDispatch()
-    const [limit, setLimit] = useState(6)
-    const [isFetch, setISfetch] = useState(false)
+    const [limit, setLimit] = useState(30)
+    const iconRef = useRef(null)
 
     useEffect(() => {
-        dispatch(getOne())
+        dispatch(getProducts(limit))
     }, [])
 
-    useEffect(() => {
-        if (isFetch) {
-            dispatch(getDumy(limit))
-            setLimit(prev => prev + 6)
-        }
-    }, [isFetch])
+    const more = () => {
+        iconRef.current.classList.add('ref')
 
-
-    const scrollHandler = (e) => {
-        if (e.target.documentElement.scrollHeight - e.target.documentElement.scrollTop - window.innerHeight < 200) {
-            setISfetch(true)
-        } if (e.target.documentElement.scrollHeight - e.target.documentElement.scrollTop - window.innerHeight > 200) {
-            setISfetch(false)
-        }
+        setTimeout(() => {
+            dispatch(getProducts(limit))
+            iconRef.current.classList.remove('ref')
+        }, 2000)
     }
-
-    useEffect(() => {
-        document.addEventListener('scroll', scrollHandler)
-        return () => {
-            document.removeEventListener('scroll', scrollHandler)
-        }
-    }, [])
 
 
     return (
@@ -48,12 +32,21 @@ export default function Main() {
             <div className="container">
                 <div className="main-content">
                     {
-                        oneStore?.map(el => <OneStoreItem key={el.id} {...el} />)
-                    }
-                    {
-                        dumy?.map(el => <DumyItem key={el.id} {...el} />)
+                        products?.map(el =>
+                            <React.Suspense key={el.id} fallback={<Triangle
+                                visible={true}
+                                height="80"
+                                width="80"
+                                color="rgb(147, 12, 252)"
+                                ariaLabel="triangle-loading"
+                                wrapperStyle={{}}
+                                wrapperClass=""
+                            />}>
+                                <LazyItems {...el} />
+                            </React.Suspense>)
                     }
                 </div>
+                <div className="refresh"><button onClick={() => { setLimit(prev => prev + 12); more() }}>Refresh <span ref={iconRef} ><FiRefreshCw /></span></button></div>
             </div>
         </div>
     )

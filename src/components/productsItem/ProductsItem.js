@@ -32,7 +32,7 @@ function DumyItem({ id, title, category, price, discount, rating, photoPreview, 
                 <div className="dumy-item-rating"><FaStar className="dumy-item-ratin-star" /><span className="dumy-item-rating-rating">{rating}</span> / <span className="dumy-item-rating-commeny-length">{comment.length} comment</span></div>
             </div>
             <div className="dumy-item-button">
-                <button onClick={() => dispatch(addToCart(id))}><PiShoppingCartSimpleFill className="dumy-item-btn-icon" /> {add ? 'Added' : 'Add to cart'}</button>
+                <button onClick={() => dispatch(addToCart(id))}><PiShoppingCartSimpleFill style={{ display: add ? 'none' : '' }} className="dumy-item-btn-icon" /> {add ? 'Added' : 'Add to cart'}</button>
             </div>
         </div>
     )

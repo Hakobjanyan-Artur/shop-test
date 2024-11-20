@@ -1,6 +1,6 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
-import Menu from "../components/munu/Menu";
+import Menu from "../components/menu/Menu";
 import Navbar from "../components/navbar/Navbar";
 import NavbarBottom from "./NavbarBottom";
 

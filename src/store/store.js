@@ -1,13 +1,15 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { cartReducers } from "./slices/cart/cart";
-import { dumyReducers } from "./slices/products/dumy";
-import { oneStoreReducers } from "./slices/products/oneStore";
+import { categoriReducers } from "./slices/categories/categories";
+import { currentReducers } from "./slices/categories/currentCategori";
+import { productsReducers } from "./slices/products/products";
 
 const store = configureStore({
     reducer: {
-        dumy: dumyReducers,
-        oneStore: oneStoreReducers,
+        products: productsReducers,
         cart: cartReducers,
+        categori: categoriReducers,
+        currentCategori: currentReducers
     }
 })
 
