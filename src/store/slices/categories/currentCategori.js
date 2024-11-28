@@ -5,7 +5,7 @@ const currentCategori = createSlice({
     name: 'currentCategori',
     initialState: {
         currentCategori: [],
-        load: false,
+        loadCategory: false,
         error: false
     },
     reducers: {

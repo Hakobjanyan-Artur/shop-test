@@ -2,13 +2,13 @@ import React, { useEffect, useRef, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { selectProducts } from "../../store/slices/products/products"
 import { getProducts } from "../../store/slices/products/productsAPI"
-import { Triangle } from 'react-loader-spinner'
 import { FiRefreshCw } from "react-icons/fi";
-const LazyItems = React.lazy(() => import('../productsItem/ProductsItem'))
+import ProductsItem from "../productsItem/ProductsItem"
+import { ThreeDots } from 'react-loader-spinner'
 
 
 export default function Main() {
-    const { products } = useSelector(selectProducts)
+    const { products, load } = useSelector(selectProducts)
     const dispatch = useDispatch()
     const [limit, setLimit] = useState(30)
     const iconRef = useRef(null)
@@ -32,18 +32,17 @@ export default function Main() {
             <div className="container">
                 <div className="main-content">
                     {
-                        products?.map(el =>
-                            <React.Suspense key={el.id} fallback={<Triangle
+                        products?.map(el => load ?
+                            <ThreeDots key={el.id}
                                 visible={true}
                                 height="80"
                                 width="80"
-                                color="rgb(147, 12, 252)"
-                                ariaLabel="triangle-loading"
+                                color="rgb(167, 63, 247)"
+                                radius="9"
+                                ariaLabel="three-dots-loading"
                                 wrapperStyle={{}}
                                 wrapperClass=""
-                            />}>
-                                <LazyItems {...el} />
-                            </React.Suspense>)
+                            /> : <ProductsItem key={el.id} {...el} />)
                     }
                 </div>
                 <div className="refresh"><button onClick={() => { setLimit(prev => prev + 12); more() }}>Refresh <span ref={iconRef} ><FiRefreshCw /></span></button></div>

@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import Categori from './components/categori/Categori';
 import Main from './components/main/Main';
+import ProductId from './components/productId/ProductId';
 import menu from './hoc/menu';
 import HomeWrapper from './pages/HomeWrapper';
 export const showContext = createContext()
@@ -17,7 +18,8 @@ function App({ show, toggleShow }) {
         <Routes>
           <Route path='/' element={<HomeWrapper />}>
             <Route index element={<Main />} />
-            <Route path='categori' element={<Categori />} />
+            <Route path='categori/:id' element={<Categori />} />
+            <Route path='product-id/:id' element={<ProductId />} />
           </Route>
         </Routes>
       </showContext.Provider>

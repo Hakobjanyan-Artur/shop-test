@@ -1,9 +1,9 @@
-import { React, useContext, useEffect, useRef, useState } from "react"
+import { React, useContext, useEffect, useRef } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
 import { showContext } from "../../App"
 import { getCategori } from "../../store/slices/categories/categoriAPI"
-import { addCategori, selectCategories } from "../../store/slices/categories/categories"
+import { selectCategories } from "../../store/slices/categories/categories"
 import { getCurrent } from "../../store/slices/categories/currentCategoriAPI"
 
 
@@ -47,7 +47,7 @@ export default function Menu() {
                 className="menu-link">
                 <ul>
                     {categori?.map(el => (
-                        <li onClick={() => { dispatch(getCurrent(el.name)); navigate(`categori`); }} key={el.id}>{el.name}</li>
+                        <li onClick={() => { dispatch(getCurrent(el.name)); navigate(`categori/${el.name}`); }} key={el.id}>{el.name}</li>
                     ))}
                 </ul>
             </div>

@@ -1,13 +1,20 @@
 import React, { useEffect } from "react"
 import { Triangle } from "react-loader-spinner"
-import { useSelector } from "react-redux"
-import { useNavigate } from "react-router-dom"
+import { useDispatch, useSelector } from "react-redux"
+import { useNavigate, useParams } from "react-router-dom"
+import { getCategori } from "../../store/slices/categories/categoriAPI"
 import { selectCurrent } from "../../store/slices/categories/currentCategori"
 const LazyItems = React.lazy(() => import('../productsItem/ProductsItem'))
 
 export default function Categori() {
+    const { id } = useParams()
     const navigate = useNavigate()
+    const dispatch = useDispatch()
     const { currentCategori, load } = useSelector(selectCurrent)
+
+    useEffect(() => {
+        dispatch(getCategori(id))
+    }, [id])
 
     useEffect(() => {
         if (currentCategori.length === 0) {

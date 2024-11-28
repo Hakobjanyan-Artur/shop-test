@@ -1,11 +1,9 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { v4 } from "uuid";
 
 export const getCurrent = createAsyncThunk(
     'currentCategori/getCurrent',
     async (name) => {
-
         let current = await axios.get(`https://dummyjson.com/products/category/${name}`)
 
         let currentCat = current.data.products.map(el => ({
