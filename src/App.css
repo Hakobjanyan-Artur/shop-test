@@ -167,6 +167,7 @@ img {
   font-size: 18px;
   color: #fff;
   cursor: pointer;
+  position: relative;
 }
 .navbar .container .navbar-content .navbar-content-icons .navbar-content-user .icon-txt,
 .navbar .container .navbar-content .navbar-content-icons .navbar-content-basket .icon-txt {
@@ -181,6 +182,20 @@ img {
   .navbar .container .navbar-content .navbar-content-icons .navbar-content-user {
     display: none;
   }
+}
+.navbar .container .navbar-content .navbar-content-icons .navbar-content-basket .cart-lenght {
+  position: absolute;
+  top: -7px;
+  right: -5px;
+  min-width: 15px;
+  min-height: 15px;
+  background-color: red;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .navbar-bottom {
@@ -810,4 +825,54 @@ img {
   .product-id .container .product-id-content .product-id-category .pr-id-category-items {
     grid-template-columns: repeat(2, 1fr);
   }
+}
+
+.basket {
+  background-color: rgb(238, 238, 238);
+  min-height: 100vh;
+}
+.basket .container .basket-content {
+  padding: 30px 0 50px 0;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+.basket .container .basket-content .basket-left {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 20px;
+  width: 70%;
+}
+.basket .container .basket-content .basket-left .basket-left-title {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.basket .container .basket-content .basket-left .basket-left-title .basket-title h2 {
+  font-size: 22px;
+  font-weight: 900;
+  font-family: "san-serif";
+}
+.basket .container .basket-content .basket-left .basket-left-title .basket-items-count {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.basket .container .basket-content .basket-rigth-content {
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background-color: #fff;
+  padding: 20px;
+  position: absolute;
+  right: 0;
+  top: 30px;
+  border-radius: 20px;
+}
+.basket .container .basket-content .basket-rigth-content .rigth-items,
+.basket .container .basket-content .basket-rigth-content .rigth-items-discount,
+.basket .container .basket-content .basket-rigth-content .basket-totla {
+  display: flex;
+  justify-content: space-between;
 }/*# sourceMappingURL=App.css.map */

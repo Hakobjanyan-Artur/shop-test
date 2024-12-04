@@ -151,6 +151,7 @@
                     font-size: 18px;
                     color: #fff;
                     cursor: pointer;
+                    position: relative;
 
                     .icon-txt {
                         color: rgb(204, 203, 203);
@@ -165,6 +166,24 @@
                 .navbar-content-user {
                     @media(max-width: 940px) {
                         display: none;
+                    }
+                }
+
+                .navbar-content-basket {
+
+                    .cart-lenght {
+                        position: absolute;
+                        top: -7px;
+                        right: -5px;
+                        min-width: 15px;
+                        min-height: 15px;
+                        background-color: red;
+                        border-radius: 50%;
+                        color: #fff;
+                        font-size: 12px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
                     }
                 }
             }

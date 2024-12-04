@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, memo } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate, useParams } from "react-router-dom"
 import { selectProductID } from "../../store/slices/products/productId"
@@ -10,13 +10,18 @@ import { selectCurrent } from "../../store/slices/categories/currentCategori"
 import ProductsItem from "../productsItem/ProductsItem"
 import { getCurrent } from "../../store/slices/categories/currentCategoriAPI"
 import { ThreeDots } from 'react-loader-spinner'
+import { addToBasket, selectBasket } from "../../store/slices/basket/basket"
 
 
-export default function ProductId() {
+
+function ProductId() {
     const { id } = useParams()
     const { productID, load } = useSelector(selectProductID)
-    const { currentCategori, loadCategory } = useSelector(selectCurrent)
+    const { currentCategori } = useSelector(selectCurrent)
+    const { basket } = useSelector(selectBasket)
+    const localBasket = JSON.parse(localStorage.getItem('basket'))
     const [desc, setDesc] = useState(false)
+    const [add, setAdd] = useState(false)
     const [img, setImg] = useState(0)
     const navigate = useNavigate()
     const dispatch = useDispatch()
@@ -28,10 +33,35 @@ export default function ProductId() {
             dispatch(getProductID(id))
         }
     }, [id])
+    useEffect(() => {
+        if (localBasket?.find(el => el.id === productID?.id)) {
+            setAdd(true)
+        } else {
+            setAdd(false)
+        }
+    }, [localBasket, basket])
 
     useEffect(() => {
         dispatch(getCurrent(productID?.category))
     }, [productID])
+
+    const addBasket = () => {
+        dispatch(addToBasket(
+            {
+                id: +id,
+                title: productID?.title,
+                brand: productID?.brand,
+                sku: productID?.sku,
+                description: productID?.description,
+                category: productID?.category,
+                price: productID?.price,
+                discount: productID?.discount,
+                rating: productID?.rating,
+                photoPreview: productID?.photoPreview,
+                comment: productID?.comment
+            }
+        ))
+    }
 
 
     return (
@@ -268,7 +298,7 @@ export default function ProductId() {
                                                 /> : productID?.price} $</span>
                                     </div>
                                 </div>
-                                <div className="pr-id-pr-btn"><button>Add to cart</button></div>
+                                <div onClick={() => addBasket()} className="pr-id-pr-btn"><button>{add ? 'Added' : 'Add to cart'}</button></div>
                             </div>
                         </div>
                     </div>
@@ -361,3 +391,5 @@ export default function ProductId() {
         </div>
     )
 }
+
+export default memo(ProductId)

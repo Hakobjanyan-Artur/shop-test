@@ -4,15 +4,25 @@ import { PiShoppingCartSimpleFill } from "react-icons/pi";
 import { useContext, useEffect, useRef, useState } from 'react';
 import { showContext } from '../../App';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { selectBasket } from '../../store/slices/basket/basket';
 
 
 export default function Navbar() {
     const { show, toggleShow } = useContext(showContext)
     const [fixed, setFixed] = useState(false)
+    const { basket } = useSelector(selectBasket)
     const navigate = useNavigate()
     const burger1 = useRef(null)
     const burger2 = useRef(null)
     const burger3 = useRef(null)
+    const [count, setCount] = useState(0);
+    const localBasket = JSON.parse(localStorage.getItem('basket'))
+
+    useEffect(() => {
+        setCount(localBasket?.length)
+    }, [localBasket]);
+
 
     useEffect(() => {
         if (show === 'show') {
@@ -77,7 +87,12 @@ export default function Navbar() {
                             </span>
                             <span className='icon-txt'>Sign in</span>
                         </div>
-                        <div className='navbar-content-basket'>
+                        <div
+                            onClick={() => navigate('/cart')}
+                            className='navbar-content-basket'>
+                            {
+                                count ? <span className='cart-lenght'>{count}</span> : ''
+                            }
                             <span>
                                 <PiShoppingCartSimpleFill />
                             </span>
